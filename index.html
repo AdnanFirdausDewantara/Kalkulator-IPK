@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator IPK Sederhana</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator IPK Sederhana</h1>
+        <p>Masukkan mata kuliah, SKS, dan nilai. Klik "Tambah" untuk menambah baris, lalu "Hitung IPK" untuk hasil.</p>
+        
+        <table id="coursesTable">
+            <thead>
+                <tr>
+                    <th>Mata Kuliah</th>
+                    <th>SKS</th>
+                    <th>Nilai (dalam bentuk huruf)</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="coursesBody">
+           
+                <tr>
+                    <td><input type="text" placeholder="Nama mata kuliah"></td>
+                    <td><input type="number" placeholder="SKS" min="1"></td>
+                    <td><input type="text" placeholder="Nilai" maxlength="2"></td>
+                    <td><button class="remove-btn" onclick="removeRow(this)">Hapus</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="button-group">
+            <button onclick="addRow()">Tambah Mata Kuliah</button>
+            <button onclick="calculateIPK()">Hitung IPK</button>
+        </div>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        
+        const gradeWeights = {
+            'A': 4.0,
+            'AB': 3.5,
+            'B': 3.0,
+            'BC': 2.5,
+            'C': 2.0,
+            'D': 1.0,
+            'E': 0.0
+        };
+
+        function addRow() {
+            const tbody = document.getElementById('coursesBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" placeholder="Nama mata kuliah"></td>
+                <td><input type="number" placeholder="SKS" min="1"></td>
+                <td><input type="text" placeholder="Nilai" maxlength="2"></td>
+                <td><button class="remove-btn" onclick="removeRow(this)">Hapus</button></td>
+            `;
+            tbody.appendChild(row);
+        }
+
+        function removeRow(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+
+        function calculateIPK() {
+            const rows = document.querySelectorAll('#coursesBody tr');
+            let totalWeightedScore = 0;
+            let totalSKS = 0;
+            let valid = true;
+
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const name = inputs[0].value.trim();
+                const sks = parseInt(inputs[1].value);
+                const grade = inputs[2].value.trim().toUpperCase();
+
+                if (!name || isNaN(sks) || sks <= 0 || !gradeWeights.hasOwnProperty(grade)) {
+                    valid = false;
+                    return;
+                }
+
+                totalWeightedScore += gradeWeights[grade] * sks;
+                totalSKS += sks;
+            });
+
+            if (!valid || totalSKS === 0) {
+                document.getElementById('result').innerText = 'Error: Pastikan semua field diisi dengan benar.';
+                return;
+            }
+
+            const ipk = (totalWeightedScore / totalSKS).toFixed(2);
+            document.getElementById('result').innerText = `IPK Anda: ${ipk}`;
+        }
+    </script>
+</body>
+</html>
