@@ -1,0 +1,172 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-add { background-color: #2196F3; color: white; }
+.btn-add:hover { background-color: #0b7dda; }
+
+.btn-calc { background-color: #4CAF50; color: white; flex-grow: 1; }
+.btn-calc:hover { background-color: #45a049; }
+
+.btn-reset { background-color: #f44336; color: white; }
+.btn-reset:hover { background-color: #d32f2f; }
+
+.btn-delete {
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.btn-delete:hover { background-color: #e68900; }
+
+
+.result-box {
+    background-color: #e8f5e9;
+    border: 1px solid #4CAF50;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.2em;
+    display: none; 
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    th, td { padding: 8px 4px; font-size: 14px; }
+    input, select { font-size: 14px; }
+    .container { padding: 15px; }
+}
+
+@media (max-width: 600px) {
+    
+    #ipkTable, #ipkTable thead, #ipkTable tbody, #ipkTable th, #ipkTable td, #ipkTable tr {
+        display: block;
+    }
+
+    #ipkTable thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #ipkTable tr {
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    #ipkTable td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%; 
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: right;
+    }
+
+    #ipkTable td:last-child {
+        border-bottom: none;
+        text-align: center;
+        padding-left: 12px; 
+    }
+
+    #ipkTable td::before {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #555;
+        text-align: left;
+    }
+
+    #ipkTable td:nth-of-type(1)::before { content: "Mata Kuliah"; }
+    #ipkTable td:nth-of-type(2)::before { content: "SKS"; }
+    #ipkTable td:nth-of-type(3)::before { content: "Nilai"; }
+    
+    input[type="text"], input[type="number"], select {
+        width: 90%;
+        font-size: 16px; 
+    }
+
+    .container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .btn-container {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 12px; 
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator IPK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Kalkulator IPK (IPK Kumulatif)</h2>
+        
+        <table id="ipkTable">
+            <thead>
+                <tr>
+                    <th width="40%">Mata Kuliah</th>
+                    <th width="20%">SKS</th>
+                    <th width="30%">Nilai (Huruf)</th>
+                    <th width="10%">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+
+        <div class="btn-container">
+            <button class="btn-add" onclick="addRow()">+ Tambah Mata Kuliah</button>
+            <button class="btn-reset" onclick="resetTable()">Reset</button>
+        </div>
+
+        <button class="btn-calc" onclick="calculateIPK()">Hitung IPK</button>
+
+        <div id="resultDisplay" class="result-box">
+            IPK Anda: <span id="ipkValue">0.00</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
